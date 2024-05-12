@@ -2,35 +2,38 @@
 # USFWS Coding Challenge
 # David Council
 
-
 # Graph class, does not validate acyclic-ity
 class Graph:
     # Declare graph as a dictionary
     graph = {}
-    # Declare list to hold visited vertices
-    visitedVertices = []
-    # Declare path length and temp path length starting at 0
-    pathLength = 0
-    tempPathLength = 0
 
     # Class Constructor
     def __init__(self, adjacencyList):
         self.graph = adjacencyList
+        # Declare list to hold visited nodes
+        self.visitedNodes = []
+        # Declare path length and temp path length starting at 0
+        self.pathLength = 0
+        self.tempPathLength = 0
 
     # Function to find longest path from given node
     def getLongestPath(self, start):
-        if start not in self.visitedVertices:
-            print("visiting: " + str(start))
+        print("Finding longest path from node: " + str(start))
+        return self.depthFirstSearch(start)
+
+    def depthFirstSearch(self, start):
+        if start not in self.visitedNodes:
+            print("Visiting node " + str(start))
             # mark as visited
-            self.visitedVertices.append(start)
+            self.visitedNodes.append(start)
 
             # if this is not a leaf node
             if len(self.graph[start]):
                 # increment temporary path length
                 self.tempPathLength += 1
-                # recurse through adjacent vertices
-                for adjVertex in self.graph[start]:
-                    self.getLongestPath(adjVertex)
+                # recurse through adjacent nodes
+                for adjnode in self.graph[start]:
+                    self.depthFirstSearch(adjnode)
 
             # if this is a leaf node
             else:
@@ -43,12 +46,11 @@ class Graph:
         # return path length
         return self.pathLength
 
-
-# e.g. {vertex: [set of adjacent vertices], ...}
+# e.g. {node: [set of adjacent nodes], ...}
 # adjacencyList = {0: [1, 2], 1: [3, 4], 2: [5], 3: [], 4: [5], 5: []}
 adjacencyList = {0: [1, 3], 1: [3, 4], 2: [3, 4, 5], 3: [5], 4: [5], 5: []}
 # construct Graph with adjacency list
 graph = Graph(adjacencyList)
 
 # print integer of longest path from node 2
-print(graph.getLongestPath(0))
+print(graph.getLongestPath(2))
