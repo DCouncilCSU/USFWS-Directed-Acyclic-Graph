@@ -2,13 +2,13 @@
 # USFWS Coding Challenge
 # David Council
 
-
 # Graph class, does not validate acyclic-ity
 class Graph:
     # Declare graph as a dictionary
     graph = {}
     # Declare List to hold visited vertices
     visitedVertices = []
+    # Declare path length starting at 0
     pathLength = 0
 
     # Class Constructor
@@ -20,6 +20,7 @@ class Graph:
             print("visiting: " + str(start))
             # mark as visited
             self.visitedVertices.append(start)
+
             # increment path length
             self.pathLength += 1
 
@@ -32,9 +33,7 @@ class Graph:
         return self.pathLength - 1
 
 
-# construct Graph with adjacency list
 # e.g. {vertex: [set of adjacent vertices], ...}
-
 adjacencyList = {
     0: [1, 2],
     1: [3, 4],
@@ -43,6 +42,7 @@ adjacencyList = {
     4: [5],
     5: []
 }
+# construct Graph with adjacency list
 graph = Graph(adjacencyList)
 
-print(graph.get_longest_path(0))
+print(graph.get_longest_path(1))
