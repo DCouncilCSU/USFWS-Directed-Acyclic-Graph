@@ -17,9 +17,10 @@ class Graph:
         self.tempPathLength = 0
 
     # Function to find longest path from given node
-    def getLongestPath(self, start):
+    def getLongestPathFrom(self, start):
         print("Finding longest path from node: " + str(start))
-        return self.depthFirstSearch(start)
+        self.depthFirstSearch(start)
+        print("Longest path length: " + str(self.pathLength))
 
     def depthFirstSearch(self, start):
         if start not in self.visitedNodes:
@@ -46,11 +47,29 @@ class Graph:
         # return path length
         return self.pathLength
 
+# Driver Code
 # e.g. {node: [set of adjacent nodes], ...}
-# adjacencyList = {0: [1, 2], 1: [3, 4], 2: [5], 3: [], 4: [5], 5: []}
-adjacencyList = {0: [1, 3], 1: [3, 4], 2: [3, 4, 5], 3: [5], 4: [5], 5: []}
+adjacencyList = {0: [1, 2], 1: [3, 4], 2: [5], 3: [], 4: [5], 5: []}
+# adjacencyList = {0: [1], 1: []}
+# adjacencyList = {
+#     0: [1, 3], 
+#     1: [3, 4], 
+#     2: [3, 4, 5], 
+#     3: [5], 
+#     4: [5], 
+#     5: []
+# }
+# adjacencyList = {
+#     0: [1, 3], 
+#     1: [2, 4], 
+#     2: [3, 4, 5], 
+#     3: [4], 
+#     4: [5], 
+#     5: []
+# }
+
 # construct Graph with adjacency list
 graph = Graph(adjacencyList)
 
-# print integer of longest path from node 2
-print(graph.getLongestPath(2))
+# print longest path from node 2
+graph.getLongestPathFrom(2)

@@ -17,11 +17,11 @@ adjacencyList = {
 ```
 
 In the driver code, you can select a starting node, on the line that looks like: 
-`print(graph.getLongestPath(2))`  
+`graph.getLongestPathFrom(2)`
 
-2 can be replaced with any valid key from the adjacency graph above
+`2` can be replaced with any valid key from the adjacency graph above
 
-When the program is invoked, an integer of the longest path from the node defined in the driver code will be output.
+When the program is invoked, an integer of the longest path from the node defined in the driver code will be output, along with some progress indicators
 
 To run the program:
 `python main.py`
@@ -34,3 +34,7 @@ DFS: We start at the chosen node and mark that we have visited this node. We loo
 #### TODOS
 * Graph validation in constructor
 * Node validation in getLongestPath function
+* DFS will provide O(Nodes+Edges) performance
+
+#### Misc
+* Graphs with multiple same-length paths will always traverse one or the other
