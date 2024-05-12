@@ -34,7 +34,7 @@ DFS: We start at the chosen node and mark that we have visited this node. We loo
 #### TODOS
 * Graph validation in constructor
 * Node validation in getLongestPath function
-* DFS will provide O(Nodes+Edges) performance
 
 #### Misc
+* DFS will provide O(Nodes+Edges) performance
 * Graphs with multiple same-length paths will always traverse one or the other
