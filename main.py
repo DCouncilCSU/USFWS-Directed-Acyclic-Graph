@@ -2,30 +2,47 @@
 # USFWS Coding Challenge
 # David Council
 
+
 # Graph class, does not validate acyclic-ity
 class Graph:
-    # Declare vertices as a dictionary
-    vertices = {}
+    # Declare graph as a dictionary
+    graph = {}
+    # Declare List to hold visited vertices
+    visitedVertices = []
+    pathLength = 0
 
     # Class Constructor
-    def __init__(self, vertices):
-        self.vertices = vertices
+    def __init__(self, adjacencyList):
+        self.graph = adjacencyList
 
-    # return graph in array sorted such that
-    # no element comes before its parent
-    def get_topological(self):
-        visited = []
+    def get_longest_path(self, start):
+        if start not in self.visitedVertices:
+            print("visiting: " + str(start))
+            # mark as visited
+            self.visitedVertices.append(start)
+            # increment path length
+            self.pathLength += 1
 
-        for vertex in self.vertices:
-            
-    # return integer length of longest path
-    def longest_path(self, vertex):
-        #iterate through vertices, in topological order
-        
-            
-#MAIN
-#{vertex: {set of adjacent edges}, ...}
-graph_definition = {0: {1}, 1: {2, 3}, 2: {3}}
-graph = Graph(graph_definition)
+            # recurse through adjacent vertices
+            for adjVertex in self.graph[start]:
+                self.get_longest_path(adjVertex)
 
-#print(graph.longest_path(0))
+        # return path length minus one,
+        # to account for 0 length at start
+        return self.pathLength - 1
+
+
+# construct Graph with adjacency list
+# e.g. {vertex: [set of adjacent vertices], ...}
+
+adjacencyList = {
+    0: [1, 2],
+    1: [3, 4],
+    2: [5],
+    3: [],
+    4: [5],
+    5: []
+}
+graph = Graph(adjacencyList)
+
+print(graph.get_longest_path(0))
